@@ -63,6 +63,7 @@
   </style>
 </head>
 <body class="flex flex-col items-center py-8 px-4">
+
   <!-- Header -->
   <header class="flex flex-col items-center mb-8 fade-in">
     <div class="w-32 h-32 mb-6 glass-card p-4 rounded-full flex items-center justify-center">
@@ -78,7 +79,6 @@
 
   <!-- Quiz Container -->
   <main class="w-full max-w-2xl glass-card p-8 mb-12 fade-in" id="quiz-container">
-    <!-- Question Card -->
     <div id="question-container">
       <div class="mb-8">
         <div class="flex items-center mb-4">
@@ -87,9 +87,7 @@
         </div>
         <h2 id="question" class="text-2xl font-bold mb-8">Carregando pergunta...</h2>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" id="options-container"></div>
-
       <div class="flex justify-center">
         <button id="next-btn" class="btn-furia text-white font-bold py-3 px-8 rounded-full uppercase tracking-wider">
           Próxima pergunta
@@ -97,7 +95,7 @@
       </div>
     </div>
 
-    <!-- Results Card -->
+    <!-- Results -->
     <div id="results-container" class="hidden text-center">
       <div class="mb-8">
         <h2 class="text-3xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
@@ -136,32 +134,27 @@
         {
           question: "Em que ano a FURIA foi fundada?",
           options: ["2015", "2016", "2017", "2018"],
-          correct: 3
+          correct: 2
         },
         {
           question: "Qual jogador é conhecido como 'KSCERATO' na equipe de CS:GO?",
           options: ["Kaike", "Yuri", "Andrei", "Gabriel"],
-          correct: 1
+          correct: 0
         },
         {
           question: "Em qual cidade está localizada a sede da FURIA?",
           options: ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba"],
-          correct: 1
+          correct: 0
         },
         {
-          question: "Antes de se tornar mais conhecido como IGL, qual jogador da FURIA era famoso por sua função de "entry fragger" extremamente agressivo, abrindo os bombsite de forma imprevisível no Counter-Strike?",
-          options: [
-            "yuurih",
-            "KSCERATO",
-            "VINI (quando fazia parte da equipe)",
-            "arT"
-          ],
-          correct: 4
+          question: "Antes de se tornar mais conhecido como IGL, qual jogador da FURIA era famoso por sua função de 'entry fragger' extremamente agressivo, abrindo os bombsites de forma imprevisível no Counter-Strike?",
+          options: ["yuurih", "KSCERATO", "VINI (quando fazia parte da equipe)", "arT"],
+          correct: 3
         },
         {
           question: "Qual é o nome do mascote da FURIA?",
           options: ["Fúria", "Lobo", "Onça", "A FURIA não tem mascote"],
-          correct: 1
+          correct: 0
         }
       ];
 
@@ -239,5 +232,6 @@
       startQuiz();
     });
   </script>
+
 </body>
 </html>
