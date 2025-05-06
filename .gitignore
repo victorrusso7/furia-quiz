@@ -1,0 +1,22 @@
+# Dependências (se você instalar libs via npm/yarn no futuro)
+node_modules/
+
+# Arquivos de log do npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de sistema macOS
+.DS_Store
+
+# Configurações editor/IDE
+.vscode/
+.idea/
+
+# Arquivos de ambiente (se você usar variáveis secretas)
+.env
+.env.local
+
+# Pastas de build/output (caso venha a usar bundler)
+dist/
+build/
