@@ -1,309 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FURIA Quiz Interativo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
-        
-        :root {
-            --furia-red: #ff003d;
-            --furia-dark: #0a0a0a;
-            --furia-light: #f1f1f1;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-            min-height: 100vh;
-            color: var(--furia-light);
-            overflow-x: hidden;
-        }
-        
-        .glass-card {
-            background: rgba(15, 15, 15, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-furia {
-            background: linear-gradient(135deg, var(--furia-red) 0%, #cc002e 100%);
-            transition: all 0.3s ease;
-            transform: translateY(0);
-            box-shadow: 0 4px 8px rgba(255, 0, 61, 0.3);
-        }
-        
-        .btn-furia:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 0, 61, 0.4);
-        }
-        
-        .btn-furia:active {
-            transform: translateY(0);
-        }
-        
-        .option-btn {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .option-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .option-btn.selected {
-            background: var(--furia-red);
-            color: white;
-            border-color: var(--furia-red);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 0, 61, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 0, 61, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 0, 61, 0);
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FURIA Quiz Interativo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+    :root {
+      --furia-red: #ff003d;
+      --furia-dark: #0a0a0a;
+      --furia-light: #f1f1f1;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+      min-height: 100vh;
+      color: var(--furia-light);
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(15, 15, 15, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+    .btn-furia {
+      background: linear-gradient(135deg, var(--furia-red) 0%, #cc002e 100%);
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(255, 0, 61, 0.3);
+    }
+    .btn-furia:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(255, 0, 61, 0.4);
+    }
+    .btn-furia:active {
+      transform: translateY(0);
+    }
+    .option-btn {
+      transition: all 0.3s ease;
+      transform: translateY(0);
+    }
+    .option-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .option-btn.selected {
+      background: var(--furia-red);
+      color: white;
+      border-color: var(--furia-red);
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body class="flex flex-col items-center py-8 px-4">
-    <!-- Header -->
-    <header class="flex flex-col items-center mb-8 fade-in">
-        <div class="w-32 h-32 mb-6 glass-card p-4 rounded-full flex items-center justify-center">
-            <img src="https://via.placeholder.com/100x100/ff003d/ffffff?text=FURIA" alt="Logo da FURIA" class="w-full h-full object-contain">
+  <!-- Header -->
+  <header class="flex flex-col items-center mb-8 fade-in">
+    <div class="w-32 h-32 mb-6 glass-card p-4 rounded-full flex items-center justify-center">
+      <img src="https://i.pinimg.com/736x/92/9b/0b/929b0bd666aa0f2330282abf06f63f6e.jpg" alt="Logo da FURIA" class="w-full h-full object-contain rounded-full">
+    </div>
+    <h1 class="text-4xl md:text-5xl font-black mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
+      FURIA QUIZ INTERATIVO
+    </h1>
+    <p class="text-lg md:text-xl text-center max-w-2xl opacity-90">
+      Mostre que você é raiz! Responda 5 perguntas e descubra seu nível de torcedor da FURIA.
+    </p>
+  </header>
+
+  <!-- Quiz Container -->
+  <main class="w-full max-w-2xl glass-card p-8 mb-12 fade-in" id="quiz-container">
+    <!-- Question Card -->
+    <div id="question-container">
+      <div class="mb-8">
+        <div class="flex items-center mb-4">
+          <span class="text-red-500 font-bold mr-2">PERGUNTA</span>
+          <span id="question-number" class="text-gray-400">1/5</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-black mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
-            FURIA QUIZ INTERATIVO
-        </h1>
-        <p class="text-lg md:text-xl text-center max-w-2xl opacity-90">
-            Mostre que você é raiz! Responda 5 perguntas e descubra seu nível de torcedor da FURIA.
-        </p>
-    </header>
-    
-    <!-- Quiz Container -->
-    <main class="w-full max-w-2xl glass-card p-8 mb-12 fade-in" id="quiz-container">
-        <!-- Question Card -->
-        <div id="question-container">
-            <div class="mb-8">
-                <div class="flex items-center mb-4">
-                    <span class="text-red-500 font-bold mr-2">PERGUNTA</span>
-                    <span id="question-number" class="text-gray-400">1/5</span>
-                </div>
-                <h2 id="question" class="text-2xl font-bold mb-8">Carregando pergunta...</h2>
-            </div>
-            
-            <!-- Options -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" id="options-container">
-                <!-- Options will be inserted here by JavaScript -->
-            </div>
-            
-            <!-- Next Button -->
-            <div class="flex justify-center">
-                <button id="next-btn" class="btn-furia text-white font-bold py-3 px-8 rounded-full uppercase tracking-wider">
-                    Próxima pergunta
-                </button>
-            </div>
+        <h2 id="question" class="text-2xl font-bold mb-8">Carregando pergunta...</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" id="options-container"></div>
+
+      <div class="flex justify-center">
+        <button id="next-btn" class="btn-furia text-white font-bold py-3 px-8 rounded-full uppercase tracking-wider">
+          Próxima pergunta
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Card -->
+    <div id="results-container" class="hidden text-center">
+      <div class="mb-8">
+        <h2 class="text-3xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
+          SEU RESULTADO
+        </h2>
+        <div class="text-6xl font-black mb-6" id="score">0%</div>
+        <p class="text-xl mb-6" id="result-message">Carregando mensagem...</p>
+        <div class="w-32 h-32 mx-auto mb-8 glass-card p-4 rounded-full flex items-center justify-center">
+          <img src="https://i.pinimg.com/736x/92/9b/0b/929b0bd666aa0f2330282abf06f63f6e.jpg" alt="Logo da FURIA" class="w-full h-full object-contain rounded-full">
         </div>
-        
-        <!-- Results Card (hidden initially) -->
-        <div id="results-container" class="hidden text-center">
-            <div class="mb-8">
-                <h2 class="text-3xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
-                    SEU RESULTADO
-                </h2>
-                <div class="text-6xl font-black mb-6" id="score">0%</div>
-                <p class="text-xl mb-6" id="result-message">Carregando mensagem...</p>
-                <div class="w-32 h-32 mx-auto mb-8 glass-card p-4 rounded-full flex items-center justify-center">
-                    <img src="https://via.placeholder.com/100x100/ff003d/ffffff?text=FURIA" alt="Logo da FURIA" class="w-full h-full object-contain">
-                </div>
-            </div>
-            <button id="restart-btn" class="btn-furia text-white font-bold py-3 px-8 rounded-full uppercase tracking-wider">
-                Jogar novamente
-            </button>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="w-full max-w-4xl glass-card p-6 mt-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="text-gray-400">© 2023 FURIA Esports</span>
-            </div>
-            <div class="flex space-x-6">
-                <a href="#" class="text-gray-300 hover:text-white transition">Site Oficial</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Twitter</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Instagram</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Loja</a>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Quiz questions and answers
-            const quizData = [
-                {
-                    question: "Em que ano a FURIA foi fundada?",
-                    options: ["2015", "2016", "2017", "2018"],
-                    correct: 2
-                },
-                {
-                    question: "Qual jogador é conhecido como 'KSCERATO' na equipe de CS:GO?",
-                    options: ["Kaike", "Yuri", "Andrei", "Gabriel"],
-                    correct: 0
-                },
-                {
-                    question: "Em qual cidade está localizada a sede da FURIA?",
-                    options: ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba"],
-                    correct: 2
-                },
-                {
-                    question: "Qual foi o maior feito da FURIA no CS:GO até hoje?",
-                    options: [
-                        "Ganhar um Major", 
-                        "Chegar no top 1 do ranking mundial", 
-                        "Ser semifinalista em um Major", 
-                        "Ganhar um torneio da ESL"
-                    ],
-                    correct: 2
-                },
-                {
-                    question: "Qual é o nome do mascote da FURIA?",
-                    options: ["Fúria", "Lobo", "Onça", "A FURIA não tem mascote"],
-                    correct: 3
-                }
-            ];
-            
-            // DOM elements
-            const questionContainer = document.getElementById('question-container');
-            const resultsContainer = document.getElementById('results-container');
-            const questionElement = document.getElementById('question');
-            const questionNumberElement = document.getElementById('question-number');
-            const optionsContainer = document.getElementById('options-container');
-            const nextButton = document.getElementById('next-btn');
-            const restartButton = document.getElementById('restart-btn');
-            const scoreElement = document.getElementById('score');
-            const resultMessageElement = document.getElementById('result-message');
-            
-            // Quiz state
-            let currentQuestionIndex = 0;
-            let score = 0;
-            let selectedOption = null;
-            
-            // Initialize the quiz
-            function startQuiz() {
-                currentQuestionIndex = 0;
-                score = 0;
-                resultsContainer.classList.add('hidden');
-                questionContainer.classList.remove('hidden');
-                showQuestion();
-            }
-            
-            // Display the current question
-            function showQuestion() {
-                const currentQuestion = quizData[currentQuestionIndex];
-                questionElement.textContent = currentQuestion.question;
-                questionNumberElement.textContent = `${currentQuestionIndex + 1}/${quizData.length}`;
-                
-                optionsContainer.innerHTML = '';
-                currentQuestion.options.forEach((option, index) => {
-                    const button = document.createElement('button');
-                    button.textContent = option;
-                    button.classList.add('option-btn', 'glass-card', 'p-4', 'rounded-lg', 'text-left', 'border', 'border-gray-800', 'hover:border-red-500', 'mb-2');
-                    button.addEventListener('click', () => selectOption(index));
-                    optionsContainer.appendChild(button);
-                });
-                
-                nextButton.classList.add('opacity-50', 'cursor-not-allowed');
-                nextButton.disabled = true;
-                selectedOption = null;
-            }
-            
-            // Handle option selection
-            function selectOption(index) {
-                // Remove selected class from all options
-                const options = document.querySelectorAll('.option-btn');
-                options.forEach(option => {
-                    option.classList.remove('selected');
-                });
-                
-                // Add selected class to clicked option
-                options[index].classList.add('selected');
-                selectedOption = index;
-                
-                // Enable next button
-                nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                nextButton.disabled = false;
-            }
-            
-            // Move to next question or show results
-            function nextQuestion() {
-                // Check if answer is correct
-                if (selectedOption === quizData[currentQuestionIndex].correct) {
-                    score++;
-                }
-                
-                currentQuestionIndex++;
-                
-                if (currentQuestionIndex < quizData.length) {
-                    showQuestion();
-                } else {
-                    showResults();
-                }
-            }
-            
-            // Display final results
-            function showResults() {
-                questionContainer.classList.add('hidden');
-                resultsContainer.classList.remove('hidden');
-                
-                const percentage = Math.round((score / quizData.length) * 100);
-                scoreElement.textContent = `${percentage}%`;
-                
-                let message;
-                if (percentage === 100) {
-                    message = "Você é 100% FURIA! Um verdadeiro torcedor raiz! 🐆🔥";
-                } else if (percentage >= 70) {
-                    message = "Você conhece bem a FURIA! Quase um torcedor raiz!";
-                } else if (percentage >= 40) {
-                    message = "Você é um torcedor médio da FURIA. Tem que acompanhar mais!";
-                } else {
-                    message = "Você é iniciante na FURIA. Hora de acompanhar mais os jogos!";
-                }
-                
-                resultMessageElement.textContent = message;
-            }
-            
-            // Event listeners
-            nextButton.addEventListener('click', nextQuestion);
-            restartButton.addEventListener('click', startQuiz);
-            
-            // Start the quiz
-            startQuiz();
+      </div>
+      <button id="restart-btn" class="btn-furia text-white font-bold py-3 px-8 rounded-full uppercase tracking-wider">
+        Jogar novamente
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-4xl glass-card p-6 mt-auto">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <span class="text-gray-400">© 2025 FURIA Esports</span>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://www.furia.gg/" target="_blank" class="text-gray-300 hover:text-white transition">Site Oficial</a>
+        <a href="https://x.com/FURIA" target="_blank" class="text-gray-300 hover:text-white transition">Twitter</a>
+        <a href="https://www.instagram.com/furiagg/" target="_blank" class="text-gray-300 hover:text-white transition">Instagram</a>
+        <a href="https://www.furia.gg/collections" target="_blank" class="text-gray-300 hover:text-white transition">Loja</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const quizData = [
+        {
+          question: "Em que ano a FURIA foi fundada?",
+          options: ["2015", "2016", "2017", "2018"],
+          correct: 2
+        },
+        {
+          question: "Qual jogador é conhecido como 'KSCERATO' na equipe de CS:GO?",
+          options: ["Kaike", "Yuri", "Andrei", "Gabriel"],
+          correct: 0
+        },
+        {
+          question: "Em qual cidade está localizada a sede da FURIA?",
+          options: ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba"],
+          correct: 2
+        },
+        {
+          question: "Qual foi o maior feito da FURIA no CS:GO até hoje?",
+          options: [
+            "Ganhar um Major",
+            "Chegar no top 1 do ranking mundial",
+            "Ser semifinalista em um Major",
+            "Ganhar um torneio da ESL"
+          ],
+          correct: 2
+        },
+        {
+          question: "Qual é o nome do mascote da FURIA?",
+          options: ["Fúria", "Lobo", "Onça", "A FURIA não tem mascote"],
+          correct: 3
+        }
+      ];
+
+      const questionContainer = document.getElementById('question-container');
+      const resultsContainer = document.getElementById('results-container');
+      const questionElement = document.getElementById('question');
+      const questionNumberElement = document.getElementById('question-number');
+      const optionsContainer = document.getElementById('options-container');
+      const nextButton = document.getElementById('next-btn');
+      const restartButton = document.getElementById('restart-btn');
+      const scoreElement = document.getElementById('score');
+      const resultMessageElement = document.getElementById('result-message');
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let selectedOption = null;
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        resultsContainer.classList.add('hidden');
+        questionContainer.classList.remove('hidden');
+        showQuestion();
+      }
+
+      function showQuestion() {
+        const currentQuestion = quizData[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.question;
+        questionNumberElement.textContent = `${currentQuestionIndex + 1}/${quizData.length}`;
+
+        optionsContainer.innerHTML = '';
+        currentQuestion.options.forEach((option, index) => {
+          const button = document.createElement('button');
+          button.textContent = option;
+          button.classList.add('option-btn', 'glass-card', 'p-4', 'rounded-lg', 'text-left', 'border', 'border-gray-800', 'hover:border-red-500', 'mb-2');
+          button.addEventListener('click', () => selectOption(index));
+          optionsContainer.appendChild(button);
         });
-    </script>
+
+        nextButton.classList.add('opacity-50', 'cursor-not-allowed');
+        nextButton.disabled = true;
+        selectedOption = null;
+      }
+
+      function selectOption(index) {
+        const options = document.querySelectorAll('.option-btn');
+        options.forEach(option => option.classList.remove('selected'));
+        options[index].classList.add('selected');
+        selectedOption = index;
+        nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        nextButton.disabled = false;
+      }
+
+      function nextQuestion() {
+        if (selectedOption === quizData[currentQuestionIndex].correct) score++;
+        currentQuestionIndex++;
+        currentQuestionIndex < quizData.length ? showQuestion() : showResults();
+      }
+
+      function showResults() {
+        questionContainer.classList.add('hidden');
+        resultsContainer.classList.remove('hidden');
+        const percentage = Math.round((score / quizData.length) * 100);
+        scoreElement.textContent = `${percentage}%`;
+        let message = "";
+        if (percentage === 100) message = "Você é 100% FURIA! Um verdadeiro torcedor raiz! 🐆🔥";
+        else if (percentage >= 70) message = "Você conhece bem a FURIA! Quase um torcedor raiz!";
+        else if (percentage >= 40) message = "Você é um torcedor médio da FURIA. Tem que acompanhar mais!";
+        else message = "Você é iniciante na FURIA. Hora de acompanhar mais os jogos!";
+        resultMessageElement.textContent = message;
+      }
+
+      nextButton.addEventListener('click', nextQuestion);
+      restartButton.addEventListener('click', startQuiz);
+      startQuiz();
+    });
+  </script>
 </body>
 </html>
