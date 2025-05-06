@@ -1,4 +1,4 @@
-# 🐆 FURIA Quiz Interativo
+# FURIA Quiz Interativo
 
 Projeto criado como parte do desafio **Workspace Full AI Mode**, integrando IA, design moderno e ferramentas de alta performance para desenvolver mais rápido e melhor.
 
